@@ -23,12 +23,8 @@ export function changeFood() {
   FOOD[0] = Math.floor(Math.random() * ROWS);
   FOOD[1] = Math.floor(Math.random() * COLS);
 }
-
-export function moveSnake(snake: Snake) {
-  const newBody = [...snake.body];
-  const head: Location = [...snake.body[0]];
-  snake.direction = snake.tempDirection;
-  switch (snake.direction) {
+export function newHeadLocation(head: Location, direction: Direction) {
+  switch (direction) {
     case "ArrowUp":
       head[1]--;
       break;
@@ -42,6 +38,12 @@ export function moveSnake(snake: Snake) {
       head[0]--;
       break;
   }
+  return head;
+}
+export function moveSnake(snake: Snake) {
+  const newBody = [...snake.body];
+  snake.direction = snake.tempDirection;
+  const head = newHeadLocation([...snake.body[0]], snake.direction);
   newBody.unshift(head);
   if (checkSameLocation(head, FOOD)) {
     changeFood();
