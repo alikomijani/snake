@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Canvas } from "./components/canvas";
 import { renderBoard, renderFood, renderSnake } from "./utils/renders";
-import { snakeTemplate } from "./utils/constants";
+import { FOOD, snakeTemplate } from "./utils/constants";
 import { checkGameOver, keyboardController, moveSnake } from "./utils/logic";
+import { aiNextMove } from "./utils/ai";
 
 function App() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -18,6 +19,7 @@ function App() {
       if (checkGameOver(snakeRef.current)) {
         setGameState(false);
       }
+      aiNextMove(snakeRef.current, FOOD);
     }
   }, [gameState]);
 
