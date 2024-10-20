@@ -93,6 +93,30 @@ export function keyboardController(e: KeyboardEvent, snake: Snake) {
   }
 }
 
+export function keyboardController2(e: KeyboardEvent, snake: Snake) {
+  switch (e.key) {
+    case "w":
+      if (snake.direction !== "ArrowDown") {
+        snake.tempDirection = "ArrowUp";
+      }
+      break;
+    case "s":
+      if (snake.direction !== "ArrowUp") {
+        snake.tempDirection = "ArrowDown";
+      }
+      break;
+    case "a":
+      if (snake.direction !== "ArrowRight") {
+        snake.tempDirection = "ArrowLeft";
+      }
+      break;
+    case "d":
+      if (snake.direction !== "ArrowLeft") {
+        snake.tempDirection = "ArrowRight";
+      }
+      break;
+  }
+}
 export function chooseHeadImage(direction: Direction) {
   let headImage: HTMLImageElement;
   switch (direction) {

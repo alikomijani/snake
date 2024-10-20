@@ -36,38 +36,26 @@ export function renderBoard(ctx: CanvasRenderingContext2D) {
 }
 
 export function renderSnake(ctx: CanvasRenderingContext2D, snake: Snake) {
-  ctx.beginPath();
-
   snake.body.forEach((part, index, body) => {
+    let image: HTMLImageElement;
     if (index) {
-      const bodyImage = chooseBodyImage({
+      image = chooseBodyImage({
         part,
         previous: snake.body[index - 1],
         isLast: index === body.length - 1,
         next: index < body.length ? snake.body[index + 1] : undefined,
       });
-      ctx.drawImage(
-        bodyImage,
-        part[0] * CELL_WIDTH,
-        part[1] * CELL_HEIGHT,
-        CELL_WIDTH,
-        CELL_HEIGHT
-      );
     } else {
-      const headImage = chooseHeadImage(snake.direction);
-      ctx.drawImage(
-        headImage,
-        part[0] * CELL_WIDTH,
-        part[1] * CELL_HEIGHT,
-        CELL_WIDTH,
-        CELL_HEIGHT
-      );
+      image = chooseHeadImage(snake.direction);
     }
+    ctx.drawImage(
+      image,
+      part[0] * CELL_WIDTH,
+      part[1] * CELL_HEIGHT,
+      CELL_WIDTH,
+      CELL_HEIGHT
+    );
   });
-
-  ctx.fillStyle = "black";
-  ctx.fill();
-  ctx.closePath();
 }
 
 export function renderFood(ctx: CanvasRenderingContext2D) {

@@ -16,6 +16,7 @@ export type Snake = {
   body: Location[];
   direction: Direction;
   tempDirection: Direction;
+  color: number;
 };
 export const snakeTemplate: Snake = {
   name: "Ali",
@@ -26,4 +27,5 @@ export const snakeTemplate: Snake = {
   ],
   direction: "ArrowUp",
   tempDirection: "ArrowUp",
+  color: 0,
 };
