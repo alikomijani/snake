@@ -16,7 +16,7 @@ import {
   bodyVerticalImage,
 } from "./loadAssets";
 
-function checkSameLocation(a: Location, b: Location) {
+export function checkSameLocation(a: Location, b: Location) {
   return a[0] === b[0] && a[1] === b[1];
 }
 export function changeFood() {
